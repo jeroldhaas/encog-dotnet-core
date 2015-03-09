@@ -299,11 +299,8 @@ namespace Encog.Util.Arrayutil
         /// <returns>The normalized value.</returns>
         public double DeNormalize(double v)
         {
-            double result = ((_actualLow - _actualHigh)*v
-                             - _normalizedHigh*_actualLow + _actualHigh
-                             *_normalizedLow)
-                            /(_normalizedLow - _normalizedHigh);
-            return result;
+            return ((v - _normalizedLow) * (_actualHigh - _actualLow)
+                / (_normalizedHigh - _normalizedLow)) + _actualLow;
         }
 
         /// <summary>

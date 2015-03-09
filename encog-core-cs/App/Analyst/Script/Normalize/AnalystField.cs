@@ -383,10 +383,8 @@ namespace Encog.App.Analyst.Script.Normalize
         /// <returns>The normalized value.</returns>
         public double DeNormalize(double v)
         {
-            double result = ((_actualLow - _actualHigh)*v
-                             - _normalizedHigh*_actualLow + _actualHigh
-                             *_normalizedLow)
-                            /(_normalizedLow - _normalizedHigh);
+            double result = ((v - _normalizedLow)*(_actualHigh - _actualLow)
+                /(_normalizedHigh - _normalizedLow)) + _actualLow; 
 
             // typically caused by a number that should not have been normalized
             // (i.e. normalization or actual range is infinitely small.
